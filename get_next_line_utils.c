@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 15:17:28 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/05/01 15:17:31 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/05/04 10:27:12 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/05/04 15:59:18 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,31 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
 	char	*str;
 
 	if (!s1)
-		return (NULL);
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	str = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (clean_data(s1));
 	ft_strlcpy(str, s1, len_s1 + 1);
 	ft_strlcat(str, s2, len_s1 + len_s2 + 1);
+	clean_data(s1);
 	return (str);
 }
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
 	size_t	i;
 	size_t	len_d;
@@ -68,7 +74,7 @@ size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t n)
 	return (len_d + len_s);
 }
 
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
 	size_t	i;
 
@@ -90,6 +96,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s || *s == '\0')
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
