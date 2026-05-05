@@ -6,7 +6,7 @@
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 10:25:42 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/05/04 21:10:46 by mdurte-s         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:10:16 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*read_and_stash(int fd, char *stash)
 		stash = ft_strjoin(stash, buffer);
 	}
 	clean_data(buffer);
-	if (bytes < 0)
+	if (bytes < 0 || (stash && *stash == '\0'))
 		return (clean_data(stash));
 	return (stash);
 }

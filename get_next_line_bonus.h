@@ -6,7 +6,7 @@
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 10:26:45 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/05/04 21:12:15 by mdurte-s         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:18:31 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #  define BUFFER_SIZE 1
 # endif
 
-#ifndef OPEN_MAX
-# define OPEN_MAX 1024
-#endif
+# ifndef OPEN_MAX
+#  define OPEN_MAX 1024
+# endif
 
 # include <stdlib.h>
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 10:27:12 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/05/04 15:59:18 by mdurte-s         ###   ########.fr       */
+/*   Updated: 2026/05/05 13:49:24 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
-	if (!s)
+	if (!s || *s == '\0')
 		return (NULL);
 	i = 0;
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 10:25:42 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/05/04 16:58:54 by mdurte-s         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:20:23 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,12 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash = read_and_stash(fd, stash);
-	if (!stash || *stash == '\0')
+	if (!stash)
 		return (NULL);
 	str = extract_line(stash);
 	if (!str)
 		return (clean_data(stash));
 	stash = new_stash(stash);
-	if (!stash)
-	{
-		clean_data(stash);
-		stash = NULL;
-	}
 	return (str);
 }
 
@@ -57,7 +52,7 @@ char	*read_and_stash(int fd, char *stash)
 		stash = ft_strjoin(stash, buffer);
 	}
 	clean_data(buffer);
-	if (bytes < 0)
+	if (bytes < 0 || (stash && *stash == '\0'))
 		return (clean_data(stash));
 	return (stash);
 }
@@ -104,6 +99,7 @@ char	*new_stash(char *stash)
 
 char	*clean_data(char *content)
 {
-	free(content);
+	if (content)
+		free(content);
 	return (NULL);
 }
